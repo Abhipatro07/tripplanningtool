@@ -3,12 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
-
+    <title>Trip Planning Tool</title>
+       <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsR7aoJssy8pm8-oOdRnWZYhDPMWXyPSs&libraries=places"
+      async
+      defer
+    ></script>
     <script type="module" src="/build/tripplanningtool.esm.js"></script>
     <script nomodule src="/build/tripplanningtool.js"></script>
   </head>
   <body>
-    <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
+    <app-root></app-root>
   </body>
 </html>

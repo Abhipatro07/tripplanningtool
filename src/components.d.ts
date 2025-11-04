@@ -6,56 +6,116 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
+    interface AppRoot {
+    }
+    interface BudgetTracker {
+    }
+    interface DestinationSearch {
+    }
+    interface ItineraryBuilder {
+    }
+    interface MapView {
         /**
-          * The first name
+          * @default null
          */
-        "first": string;
+        "lat": number | null;
         /**
-          * The last name
+          * @default null
          */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+        "lon": number | null;
     }
 }
+export interface DestinationSearchCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDestinationSearchElement;
+}
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLAppRootElement: {
+        prototype: HTMLAppRootElement;
+        new (): HTMLAppRootElement;
+    };
+    interface HTMLBudgetTrackerElement extends Components.BudgetTracker, HTMLStencilElement {
+    }
+    var HTMLBudgetTrackerElement: {
+        prototype: HTMLBudgetTrackerElement;
+        new (): HTMLBudgetTrackerElement;
+    };
+    interface HTMLDestinationSearchElementEventMap {
+        "destinationSelected": any;
+    }
+    interface HTMLDestinationSearchElement extends Components.DestinationSearch, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLDestinationSearchElementEventMap>(type: K, listener: (this: HTMLDestinationSearchElement, ev: DestinationSearchCustomEvent<HTMLDestinationSearchElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLDestinationSearchElementEventMap>(type: K, listener: (this: HTMLDestinationSearchElement, ev: DestinationSearchCustomEvent<HTMLDestinationSearchElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLDestinationSearchElement: {
+        prototype: HTMLDestinationSearchElement;
+        new (): HTMLDestinationSearchElement;
+    };
+    interface HTMLItineraryBuilderElement extends Components.ItineraryBuilder, HTMLStencilElement {
+    }
+    var HTMLItineraryBuilderElement: {
+        prototype: HTMLItineraryBuilderElement;
+        new (): HTMLItineraryBuilderElement;
+    };
+    interface HTMLMapViewElement extends Components.MapView, HTMLStencilElement {
+    }
+    var HTMLMapViewElement: {
+        prototype: HTMLMapViewElement;
+        new (): HTMLMapViewElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "app-root": HTMLAppRootElement;
+        "budget-tracker": HTMLBudgetTrackerElement;
+        "destination-search": HTMLDestinationSearchElement;
+        "itinerary-builder": HTMLItineraryBuilderElement;
+        "map-view": HTMLMapViewElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
+    interface AppRoot {
+    }
+    interface BudgetTracker {
+    }
+    interface DestinationSearch {
+        "onDestinationSelected"?: (event: DestinationSearchCustomEvent<any>) => void;
+    }
+    interface ItineraryBuilder {
+    }
+    interface MapView {
         /**
-          * The first name
+          * @default null
          */
-        "first"?: string;
+        "lat"?: number | null;
         /**
-          * The last name
+          * @default null
          */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+        "lon"?: number | null;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "app-root": AppRoot;
+        "budget-tracker": BudgetTracker;
+        "destination-search": DestinationSearch;
+        "itinerary-builder": ItineraryBuilder;
+        "map-view": MapView;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "budget-tracker": LocalJSX.BudgetTracker & JSXBase.HTMLAttributes<HTMLBudgetTrackerElement>;
+            "destination-search": LocalJSX.DestinationSearch & JSXBase.HTMLAttributes<HTMLDestinationSearchElement>;
+            "itinerary-builder": LocalJSX.ItineraryBuilder & JSXBase.HTMLAttributes<HTMLItineraryBuilderElement>;
+            "map-view": LocalJSX.MapView & JSXBase.HTMLAttributes<HTMLMapViewElement>;
         }
     }
 }
