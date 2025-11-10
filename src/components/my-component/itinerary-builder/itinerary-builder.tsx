@@ -84,23 +84,28 @@ export class ItineraryBuilder {
       completed: false,
       cost,
       address,
-      image
+      image,
     };
 
+    // ✅ 1️⃣ Add to local itinerary list
     const updatedEvents = [...this.events, newItem];
     this.events = updatedEvents;
     StorageService.saveItinerary(updatedEvents);
 
-    // 💰 Sync with Budget Tracker
+    // ✅ 2️⃣ Remove from suggestions (avoid showing it again)
+    this.suggestions = this.suggestions.filter((s) => s.name !== name);
+
+    // ✅ 3️⃣ Update Budget Tracker
     const currentBudget = StorageService.loadBudget();
     const updatedBudget = [...currentBudget, { name, amount: cost }];
     StorageService.saveBudget(updatedBudget);
     window.dispatchEvent(new CustomEvent('budgetUpdated'));
 
-    // Clear input fields
+    // ✅ 4️⃣ Clear inputs
     this.newEvent = '';
     this.newEventCost = 0;
   }
+
 
   handleRemoveEvent(index: number) {
     const eventToRemove = this.events[index];
