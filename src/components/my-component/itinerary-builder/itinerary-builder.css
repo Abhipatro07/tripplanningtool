@@ -1,4 +1,4 @@
-.itinerary {
+/* .itinerary {
   background: #ffffffcc;
   backdrop-filter: blur(8px);
   border-radius: 16px;
@@ -65,7 +65,6 @@
   transform: scale(0.95);
 }
 
-/* Timeline layout */
 .timeline {
   display: flex;
   flex-direction: column;
@@ -85,7 +84,6 @@
   border-radius: 2px;
 }
 
-/* Event cards */
 .event-card {
   background: #f9fafb;
   border-radius: 12px;
@@ -151,4 +149,595 @@
 
 .remove-btn:hover {
   transform: scale(1.2);
+} */
+
+
+/* :host {
+  display: block;
+  font-family: "Poppins", "Inter", sans-serif;
+  color: #1f2937;
+}
+
+
+.itinerary {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.itinerary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  color: #1e3a8a;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #2563eb, #1e40af);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+
+.input-field {
+  flex: 1 1 230px;
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #f9fafb;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.35);
+  background: #fff;
+}
+
+.add-btn {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.25s ease;
+}
+
+.add-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  transform: scale(1.05);
+}
+
+.add-btn:active {
+  transform: scale(0.95);
+}
+
+
+.suggestions {
+  margin-top: 15px;
+  padding: 10px;
+  background: #f0f9ff;
+  border-radius: 14px;
+  box-shadow: inset 0 0 8px rgba(37, 99, 235, 0.15);
+  animation: fadeIn 0.6s ease;
+}
+
+.suggestions h3 {
+  font-size: 1.2rem;
+  color: #1e40af;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.suggestion-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.suggestion-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.suggestion-info strong {
+  color: #1e3a8a;
+  font-weight: 600;
+}
+
+.cost {
+  color: #16a34a;
+  font-weight: 500;
+  margin-top: 3px;
+}
+
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  padding-left: 20px;
+  margin-top: 24px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #3b82f6, #1e40af);
+  border-radius: 2px;
+}
+
+
+.event-card {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.event-card::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 18px;
+  width: 12px;
+  height: 12px;
+  background: #3b82f6;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #fff;
+  transition: background 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateX(4px);
+  background: #eff6ff;
+}
+
+.completed {
+  background: #dcfce7;
+  border-left: 4px solid #16a34a;
+  opacity: 0.9;
+}
+
+.completed::before {
+  background: #16a34a;
+}
+
+.event-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.event-title {
+  font-size: 1rem;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.completed .event-title {
+  text-decoration: line-through;
+  color: #047857;
+}
+
+.event-cost {
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.remove-btn:hover {
+  transform: scale(1.25);
+}
+
+.loading-text {
+  text-align: center;
+  color: #475569;
+  font-style: italic;
+  padding: 10px;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} */
+:host {
+  display: block;
+  font-family: "Poppins", "Inter", sans-serif;
+  color: #1f2937;
+}
+
+/* ===========================
+   🗓️ MAIN CONTAINER
+=========================== */
+.itinerary {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.itinerary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+}
+
+/* ===========================
+   🔹 HEADER
+=========================== */
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(90deg, #2a4365, #2a4365);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 22px;
+  letter-spacing: 0.5px;
+}
+
+/* ===========================
+   ➕ ADD INPUT FIELD
+=========================== */
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.input-field {
+  flex: 1 1 230px;
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #f9fafb;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
+  background: #fff;
+}
+
+.add-btn {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.add-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  transform: scale(1.05);
+}
+
+/* ===========================
+   🌍 GEOAPIFY SUGGESTIONS
+=========================== */
+.suggestions {
+  margin-top: 20px;
+  background: #f0f9ff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: inset 0 0 10px rgba(37, 99, 235, 0.15);
+  animation: fadeIn 0.6s ease;
+}
+
+.suggestions h3 {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #1e40af;
+  margin-bottom: 15px;
+}
+
+.suggestion-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.suggestion-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.2);
+}
+
+.suggestion-img {
+  width: 100px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-info {
+  flex: 1;
+  text-align: left;
+}
+
+.suggestion-info strong {
+  color: #1e3a8a;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.place-type {
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.address {
+  font-size: 0.9rem;
+  color: #1e293b;
+  margin-top: 3px;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #374151;
+  margin-top: 5px;
+  line-height: 1.3;
+}
+
+.cost {
+  color: #16a34a;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.link-btn {
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.link-btn:hover {
+  background: #1e40af;
+  transform: scale(1.05);
+}
+
+/* ===========================
+   📋 USER ITINERARY TIMELINE
+=========================== */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  padding-left: 22px;
+  margin-top: 28px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #3b82f6, #1e40af);
+  border-radius: 2px;
+}
+
+/* ===========================
+   🧾 EVENT CARDS
+=========================== */
+.event-card {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.event-card::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 20px;
+  width: 12px;
+  height: 12px;
+  background: #3b82f6;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #fff;
+  transition: background 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateX(4px);
+  background: #eff6ff;
+}
+
+.completed {
+  background: #dcfce7;
+  border-left: 4px solid #16a34a;
+  opacity: 0.9;
+}
+
+.completed::before {
+  background: #16a34a;
+}
+
+.event-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.event-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.completed .event-title {
+  text-decoration: line-through;
+  color: #047857;
+}
+
+.event-address {
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.event-cost {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.small-link {
+  text-decoration: none;
+  color: #2563eb;
+  font-size: 0.85rem;
+  margin-top: 2px;
+  transition: color 0.3s ease;
+}
+
+.small-link:hover {
+  color: #1e3a8a;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: transform 0.2s ease;
+}
+
+.remove-btn:hover {
+  transform: scale(1.25);
+}
+
+.loading-text {
+  text-align: center;
+  color: #475569;
+  font-style: italic;
+  margin: 20px 0;
+}
+
+/* ===========================
+   🔄 ANIMATIONS
+=========================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   📱 RESPONSIVE DESIGN
+=========================== */
+@media (max-width: 700px) {
+  .suggestion-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .suggestion-img {
+    width: 100%;
+    height: 160px;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  .add-btn {
+    width: 100%;
+  }
+
+  .timeline {
+    padding-left: 10px;
+  }
 }

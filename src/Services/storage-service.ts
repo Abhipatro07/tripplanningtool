@@ -3,7 +3,7 @@ export class StorageService {
   private static ITINERARY_KEY = 'trip_itinerary';
   private static BUDGET_KEY = 'trip_budget';
 
-  // Save functions
+  //! Save functions
   static saveDestination(destination: string) {
     localStorage.setItem(this.DEST_KEY, destination);
   }
@@ -16,7 +16,7 @@ export class StorageService {
     localStorage.setItem(this.BUDGET_KEY, JSON.stringify(budget));
   }
 
-  // Load functions
+  //! Load functions
   static loadDestination(): string {
     return localStorage.getItem(this.DEST_KEY) || '';
   }
@@ -31,7 +31,7 @@ export class StorageService {
     return data ? JSON.parse(data) : [];
   }
 
-  // Clear all
+  //! Clear all
   static clearAll() {
     localStorage.removeItem(this.DEST_KEY);
     localStorage.removeItem(this.ITINERARY_KEY);

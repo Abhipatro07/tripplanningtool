@@ -13,6 +13,14 @@ export namespace Components {
     interface DestinationSearch {
     }
     interface ItineraryBuilder {
+        /**
+          * @default null
+         */
+        "lat": number | null;
+        /**
+          * @default null
+         */
+        "lon": number | null;
     }
     interface MapView {
         /**
@@ -88,6 +96,14 @@ declare namespace LocalJSX {
         "onDestinationSelected"?: (event: DestinationSearchCustomEvent<any>) => void;
     }
     interface ItineraryBuilder {
+        /**
+          * @default null
+         */
+        "lat"?: number | null;
+        /**
+          * @default null
+         */
+        "lon"?: number | null;
     }
     interface MapView {
         /**

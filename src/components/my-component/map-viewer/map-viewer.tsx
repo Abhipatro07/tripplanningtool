@@ -19,6 +19,11 @@ export class MapViewer {
 
   async componentDidLoad() {
     //! find the container inside the (non-shadow) element
+    //* It locates the <div class="map-container">.
+    //* Loads the Google Maps JS API only once using your key.
+    //* Initializes the map centered either on the destination or on India (default).
+    //* Adds a marker if coordinates are already known.
+    //* Listens to resize and visibility changes → keeps map responsive.
     this.mapContainer = this.element.querySelector('.map-container') as HTMLElement;
 
     if (!this.mapContainer) {

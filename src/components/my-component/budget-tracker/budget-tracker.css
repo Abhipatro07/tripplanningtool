@@ -1,4 +1,4 @@
-.budget-tracker {
+/* .budget-tracker {
   background: #ffffffcc;
   backdrop-filter: blur(8px);
   border-radius: 16px;
@@ -99,4 +99,269 @@
 
 .total span {
   color: #2563eb;
+} */
+
+:host {
+  display: block;
+  font-family: "Poppins", "Inter", sans-serif;
+  color: #1f2937;
+}
+
+/* ===========================
+   💰 Main Container
+=========================== */
+.budget-tracker {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.budget-tracker:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================
+   🏷️ Title
+=========================== */
+.section-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  text-align: center;
+  color: #2a4365;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ===========================
+   ➕ Add Expense Inputs
+=========================== */
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 26px;
+}
+
+.input-field {
+  flex: 1 1 220px;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #f9fafb;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.3);
+  background: #fff;
+}
+
+.add-btn {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.add-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  transform: scale(1.03);
+}
+
+/* ===========================
+   💸 Expense List
+=========================== */
+.expense-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  padding: 14px 18px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.expense-item:hover {
+  background: #f1f5f9;
+  transform: translateY(-1px);
+}
+
+/* --- Left Side (Name + Amount) --- */
+.expense-item span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #1e293b;
+  font-size: 1rem;
+}
+
+.expense-item strong {
+  color: #1e40af;
+  font-weight: 600;
+}
+
+/* ===========================
+   ⚙️ Actions (Edit + Delete)
+=========================== */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* --- Shared Button Styles --- */
+.edit-btn,
+.save-btn,
+.remove-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+/* ✏️ Edit Button */
+.edit-btn {
+  color: #2563eb;
+}
+
+.edit-btn:hover {
+  background: rgba(37, 99, 235, 0.08);
+  color: #1e40af;
+  transform: scale(1.03);
+}
+
+/* 💾 Save Button */
+.save-btn {
+  color: #16a34a;
+}
+
+.save-btn:hover {
+  background: rgba(22, 163, 74, 0.1);
+  color: #15803d;
+  transform: scale(1.02);
+}
+
+/* ❌ Delete Button */
+.remove-btn {
+  color: #dc2626;
+}
+
+.remove-btn:hover {
+  background: rgba(220, 38, 38, 0.08);
+  color: #b91c1c;
+  transform: scale(1.05);
+}
+
+/* ===========================
+   💾 Edit Mode Input
+=========================== */
+.edit-input {
+  width: 90px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1px solid #94a3b8;
+  text-align: right;
+  font-size: 0.95rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.edit-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 4px rgba(37, 99, 235, 0.3);
+  outline: none;
+}
+
+/* ===========================
+   📊 Total Section
+=========================== */
+.total {
+  font-size: 1.3rem;
+  text-align: center;
+  font-weight: 600;
+  color: #1e293b;
+  margin-top: 22px;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 14px;
+}
+
+.total span {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+/* ===========================
+   ⚡ Animations
+=========================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   📱 Responsive Design
+=========================== */
+@media (max-width: 700px) {
+  .input-group {
+    flex-direction: column;
+  }
+
+  .add-btn {
+    width: 100%;
+  }
+
+  .expense-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px 14px;
+  }
+
+  .actions {
+    align-self: flex-end;
+  }
+
+  .edit-btn,
+  .save-btn,
+  .remove-btn {
+    padding: 6px 10px;
+  }
+
+  .total {
+    font-size: 1.2rem;
+  }
 }

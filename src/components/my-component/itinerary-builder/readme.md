@@ -5,6 +5,14 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property | Attribute | Description | Type     | Default |
+| -------- | --------- | ----------- | -------- | ------- |
+| `lat`    | `lat`     |             | `number` | `null`  |
+| `lon`    | `lon`     |             | `number` | `null`  |
+
+
 ## Dependencies
 
 ### Used by

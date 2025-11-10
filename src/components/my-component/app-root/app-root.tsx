@@ -9,17 +9,32 @@ import { StorageService } from '../../../Services/storage-service';
 export class AppRoot {
   @State() selectedDestination: any = null;
 
-  // When destination is selected from the search component
-  handleDestinationSelected(event: CustomEvent<any>) {
-    this.selectedDestination = event.detail;
+  // ✅ Load previous destination if available
+  componentWillLoad() {
+    const saved = StorageService.loadDestination();
+    if (saved) {
+      try {
+        this.selectedDestination = JSON.parse(saved);
+      } catch {
+        this.selectedDestination = null;
+      }
+    }
   }
 
-  // Clears all stored data and resets the app
+  // ✅ Handle destination search selection
+  handleDestinationSelected(event: CustomEvent<any>) {
+    this.selectedDestination = event.detail;
+
+    // Save destination to localStorage
+    StorageService.saveDestination(JSON.stringify(this.selectedDestination));
+  }
+
+  // ✅ Clear all stored data (destinations + itinerary + budget)
   handleClearAll() {
     if (confirm('Are you sure you want to clear all trip data?')) {
       StorageService.clearAll();
       this.selectedDestination = null;
-      window.location.reload(); // simple way to refresh UI
+      window.location.reload();
     }
   }
 
@@ -36,8 +51,10 @@ export class AppRoot {
         {/* Show selected destination name */}
         {this.selectedDestination && (
           <div class="selected-destination">
-            <h2>Selected Destination:</h2>
-            <p>{this.selectedDestination.name}, {this.selectedDestination.country}</p>
+            <h2>📍 Selected Destination:</h2>
+            <p>
+              {this.selectedDestination.name}, {this.selectedDestination.country}
+            </p>
           </div>
         )}
 
@@ -48,15 +65,19 @@ export class AppRoot {
               lat={this.selectedDestination.lat}
               lon={this.selectedDestination.lon}
             ></map-view>
-
           ) : (
-            <p class="placeholder-text">Search for a destination to view on the map</p>
+            <p class="placeholder-text">
+              Search for a destination to view on the map
+            </p>
           )}
         </div>
 
-        {/* Itinerary Builder */}
+        {/* ✅ Itinerary Builder (Now passes lat/lon props) */}
         <div class="section">
-          <itinerary-builder></itinerary-builder>
+          <itinerary-builder
+            lat={this.selectedDestination?.lat}
+            lon={this.selectedDestination?.lon}
+          ></itinerary-builder>
         </div>
 
         {/* Budget Tracker */}

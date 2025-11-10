@@ -14,6 +14,10 @@ export class DestinationSearch {
 
   async componentWillLoad() {
     //! Load last selected destination from localStorage (if any)
+    //* Runs once before the component renders.
+    //* Loads the last destination from localStorage(if it exists).
+    //* Emits that destination so that other components(like map and itinerary) are preloaded.
+    //* Updates query with that destination name(shows in input box).
     const savedDestination = StorageService.loadDestination();
     if (savedDestination) {
       try {
@@ -28,6 +32,10 @@ export class DestinationSearch {
   }
 
   async handleSearch() {
+  //* Called when the user clicks the Search button.
+  //* → which queries Open-Meteo’s geocoding API.
+  //* Sends a request to ApiService.searchDestinations()
+  //* The response returns an array of cities matching that query:
     if (this.query.trim().length === 0) {
       this.results = [];
       return;
@@ -42,6 +50,11 @@ export class DestinationSearch {
   }
 
   handleSelect(destination: any) {
+    //* When the user clicks a search result:
+    //* Saves it permanently to localStorage.
+    //* Emits the selected destination up to <app-root> using destinationSelected.
+    //* Updates the search box with the chosen name.
+    //* Clears the search results list.
     StorageService.saveDestination(JSON.stringify(destination));
     this.destinationSelected.emit(destination);
     this.query = destination.name;
