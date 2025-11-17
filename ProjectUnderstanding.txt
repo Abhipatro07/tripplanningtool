@@ -1,0 +1,125 @@
+Understanding of the Project Trip Tool Planning 
+
+app-root
+--------------------------------------------------------------------------------------------------
+1️⃣ User opens app
+    ↓
+2️⃣ app-root loads saved destination (if any)
+    ↓
+3️⃣ User searches for a city → destination-search emits event
+    ↓
+4️⃣ app-root receives event → saves destination → passes lat/lon
+    ↓
+5️⃣ map-view displays map for the city
+    ↓
+6️⃣ itinerary-builder uses lat/lon to fetch nearby attractions (Geoapify)
+    ↓
+7️⃣ Unsplash API adds real images for each place
+    ↓
+8️⃣ User adds activities → saved to local storage + synced with budget-tracker
+    ↓
+9️⃣ budget-tracker automatically updates total cost
+    ↓
+🔁 User can edit costs or remove items anytime
+    ↓
+🔚 Clear All resets everything (storage cleared + UI refreshed)
+
+
+Api-services.ts
+--------------------------------------------------------------------------------------------------
+User selects destination → app-root saves → itinerary-builder triggers
+ ↓
+ApiService.getDestinationDetails(lat, lon)
+ ↓
+Geoapify API → fetch 3 hotels + 3 restaurants + 3 attractions + 3 temples
+ ↓
+Unsplash API → fetch real photos for each
+ ↓
+Return final array to itinerary-builder
+ ↓
+Display with name, type, address, cost, and image
+ ↓
+User can “Add” any to itinerary (auto-syncs with Budget Tracker)
+
+
+Destination-search
+--------------------------------------------------------------------------------------------------
+   ➤ User types “Mysuru” → clicks Search
+   ↓
+   ➤ ApiService.searchDestinations() → fetches lat/lon 
+   ↓
+   ➤ Shows results: Mysuru, India
+   ↓
+   ➤ User clicks it → emits destinationSelected event
+   ↓
+   🔹 app-root.tsx receives the event
+        ↳ Saves destination via StorageService
+        ↳ Passes lat/lon to map-view & itinerary-builder
+   ↓
+   🔹 itinerary-builder.tsx fetches places via ApiService.getDestinationDetails()
+        ↳ Uses Geoapify to get 3 hotels, 3 restaurants, 3 temples, 3 attractions
+        ↳ Uses Unsplash to fetch images
+   ↓
+   🔹 budget-tracker.tsx syncs with selected events to calculate total trip cost
+
+
+
+map-viewer
+---------------------------------------------------------------------------------------------------
+🧩 destination-search.tsx
+   ↓ (User selects Mysuru)
+   Emits → destinationSelected({ lat, lon })
+
+🧩 app-root.tsx
+   ↓
+   <map-view lat={destination.lat} lon={destination.lon}></map-view>
+
+🧩 map-view.tsx
+   ↓
+   Uses Google Maps API → Shows the map at (lat, lon)
+
+
+itinarery-builder
+-------------------------------------------------------------------------------------------------
+User selects destination in:
+🧭 destination-search
+      ↓
+app-root.tsx passes lat/lon
+      ↓
+🗺️ map-view shows location on map
+      ↓
+🗓️ itinerary-builder fetches nearby places
+      ↓
+User adds event → stored in itinerary & budget
+      ↓
+💰 budget-tracker auto-updates in real-time
+
+
+budget-tracker.tsx
+--------------------------------------------------------------------------------------------------
+🗓️ Itinerary Builder
+   ↳ Adds/updates an event with cost
+   ↳ Saves to localStorage
+   ↳ Dispatches 'budgetUpdated'
+
+💰 Budget Tracker
+   ↳ Listens to 'budgetUpdated'
+   ↳ Reloads updated data from localStorage
+   ↳ Displays & allows manual editing
+   ↳ On edit/save/delete → also updates Itinerary + re-dispatches 'budgetUpdated'
+
+
+
+Storage-servie.ts
+-------------------------------------------------------------------------------------------------
+User searches city  →  destination-search → StorageService.saveDestination()
+                     ↓
+app-root loads city → map-view displays map
+                     ↓
+itinerary-builder fetches nearby places
+                     ↓
+User adds activities → StorageService.saveItinerary() + saveBudget()
+                     ↓
+budget-tracker auto-syncs via budgetUpdated event
+                     ↓
+User can add/edit/delete budget items → updates itinerary + triggers sync again
